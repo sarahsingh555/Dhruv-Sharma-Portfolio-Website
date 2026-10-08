@@ -13,7 +13,7 @@ const sans = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap
 
 const title = "Dhruv Sharma — Law | Legal Research | Litigation";
 const description =
-  "Fifth-year B.A. LL.B. student at Amity University, Noida. Chamber and litigation-support experience in civil, constitutional, commercial and criminal matters; moot court and research.";
+  "Fifth-year B.A. LL.B. student at Amity University, Noida. Five legal internships including the High Court of Delhi and senior advocates' chambers; moot courts, legal research and notes on contracts.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(person.site),

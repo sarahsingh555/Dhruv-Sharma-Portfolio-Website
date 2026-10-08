@@ -1,4 +1,6 @@
+import Link from "next/link";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ContactActions from "@/components/ContactActions";
@@ -8,14 +10,17 @@ import {
   competencies,
   tools,
   languages,
+  developing,
   experience,
-  exposure,
+  experienceNote,
   research,
   moots,
   achievements,
 } from "@/lib/content";
+import { featuredNote } from "@/lib/notes";
 
 export default function Home() {
+  const note = featuredNote();
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -47,8 +52,8 @@ export default function Home() {
           </h1>
           <div className="hero-lower">
             <p className="hero-statement">
-              Fifth-year B.A. LL.B. student at Amity University with chamber and litigation-support experience in civil,
-              constitutional, commercial and criminal matters.
+              Fifth-year B.A. LL.B. student at Amity University, Noida, with five legal internships across the Delhi High
+              Court and senior advocates&apos; chambers. Interested in litigation, legal research and advocacy.
             </p>
             <dl className="hero-meta">
               <div>
@@ -94,16 +99,17 @@ export default function Home() {
             </Reveal>
             <Reveal className="bio" delay={80}>
               <p>
-                Dhruv Sharma is a fifth-year B.A. LL.B. student at Amity University, Noida (2022—2027). He has worked
-                with the chambers of K.T.S. Tulsi and Vikas Pahwa, with Advocate Gaurav Gupta and with International
-                Investment &amp; Law Consultants, and has observed proceedings before the Delhi High Court, District
-                Courts and specialised tribunals.
+                Dhruv Sharma is a fifth-year B.A. LL.B. student at Amity University, Noida (graduating 2027). He has
+                completed five legal internships: with Hon&apos;ble Mr. Justice Girish Kathpalia at the High Court of
+                Delhi, in the chambers of Senior Advocates Vikas Pahwa and K.T.S. Tulsi, with Gaurav Gupta and at
+                International Investment &amp; Law Consultants. The work has been legal research, case notes and the
+                observation of hearings before the Supreme Court, the Delhi High Court and District Courts.
               </p>
               <p>
-                His work centres on statutory and precedent-based research, case briefs and research memoranda, review
-                of pleadings, contracts and legal notices, and drafting support. He has competed in national and
-                institutional moot courts and has co-authored a paper submitted to The GNLU Law Review. His interests
-                lie in civil and commercial litigation, constitutional law, arbitration and property law.
+                He has competed in national and institutional moot courts, placing second at the Amity Intra-Moot
+                Competition in 2024, and has co-authored a paper submitted to The GNLU Law Review. His interest is
+                litigation and legal research. He also writes on contracts and commercial questions, and explains legal
+                issues in plain terms.
               </p>
             </Reveal>
           </div>
@@ -123,6 +129,12 @@ export default function Home() {
               <h3 className="label">Areas of interest</h3>
               <ul className="plain">
                 {interests.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+              <h3 className="label sub">Developing interests</h3>
+              <ul className="plain">
+                {developing.map((i) => (
                   <li key={i}>{i}</li>
                 ))}
               </ul>
@@ -146,12 +158,13 @@ export default function Home() {
         {/* ——— 02 Experience ——— */}
         <section className="section wrap" aria-labelledby="experience">
           <SectionHead id="experience" n="02" label="Experience" />
-          <h2 className="t-statement sr-gap">Chambers, counsel and consultancy.</h2>
+          <h2 className="t-statement sr-gap">Five legal internships, 2023—2025.</h2>
           <ol className="timeline">
             {experience.map((e, i) => (
               <Reveal as="li" key={e.org} className="entry" delay={i * 40}>
                 <span className="entry-n num">{String(i + 1).padStart(2, "0")}</span>
                 <div className="entry-areas">
+                  <span className="period">{e.period}</span>
                   {e.areas.map((a) => (
                     <span key={a} className="label">
                       {a}
@@ -160,33 +173,18 @@ export default function Home() {
                 </div>
                 <div className="entry-body">
                   <h3 className="t-org">{e.org}</h3>
+                  <p className="role">{e.role}</p>
                   <p>{e.body}</p>
                 </div>
               </Reveal>
             ))}
           </ol>
+          <p className="muted note-line">{experienceNote}</p>
         </section>
 
-        {/* ——— 03 Legal exposure ——— */}
-        <section className="section wrap" aria-labelledby="exposure">
-          <SectionHead id="exposure" n="03" label="Areas of Legal Exposure" />
-          <div className="exposure">
-            {exposure.map((g, i) => (
-              <Reveal key={g.title} className="exposure-col" delay={i * 80}>
-                <h3 className="t-org">{g.title}</h3>
-                <ul className="rules">
-                  {g.items.map((it) => (
-                    <li key={it}>{it}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* ——— 04 Research ——— */}
+        {/* ——— 03 Research ——— */}
         <section className="section wrap" aria-labelledby="research">
-          <SectionHead id="research" n="04" label="Research" />
+          <SectionHead id="research" n="03" label="Research" />
           <ol className="archive">
             {research.map((r, i) => (
               <Reveal as="li" key={r.title} className="archive-row" delay={i * 60}>
@@ -204,41 +202,41 @@ export default function Home() {
           </ol>
         </section>
 
-        {/* ——— 05 Moot courts ——— */}
+        {/* ——— 04 Moot courts ——— */}
         <section className="section wrap" aria-labelledby="moot-courts">
-          <SectionHead id="moot-courts" n="05" label="Moot Courts" />
-          <Reveal>
-            <p className="lede">
-              National and institutional competitions involving legal research, memorial drafting and oral advocacy.
-            </p>
-            <div className="table-wrap">
-              <table className="moots">
-                <thead>
-                  <tr>
-                    <th scope="col">Year</th>
-                    <th scope="col">Competition</th>
-                    <th scope="col">Organiser</th>
-                    <th scope="col">Standing</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {moots.map((m) => (
-                    <tr key={m.name + m.year}>
-                      <td className="num">{m.year}</td>
-                      <td>{m.name}</td>
-                      <td className="muted">{m.host}</td>
-                      <td className={m.result === "Second place" ? "strong" : "muted"}>{m.result}</td>
-                    </tr>
+          <SectionHead id="moot-courts" n="04" label="Moot Courts" />
+          <h2 className="t-statement sr-gap">Competitive advocacy and legal research.</h2>
+          <p className="lede">
+            Moot courts are simulated proceedings. They build research, written submissions and oral advocacy; they are
+            not appearances for clients.
+          </p>
+          <div className="moots">
+            {moots.map((y) => (
+              <div className="moot-year" key={y.year}>
+                <h3 className="year num">{y.year}</h3>
+                <ol>
+                  {y.items.map((m, i) => (
+                    <Reveal as="li" key={m.name} className={`moot${m.top ? " moot-top" : ""}`} delay={i * 50}>
+                      {m.top && (
+                        <p className="placing">
+                          <span className="num">2nd</span> place
+                        </p>
+                      )}
+                      <h4 className="t-title">{m.name}</h4>
+                      <p className="host">{m.host}</p>
+                      <p className="muted">{m.detail}</p>
+                      <p className="label tags">{m.tags.join(" · ")}</p>
+                    </Reveal>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </Reveal>
+                </ol>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* ——— 06 Achievements ——— */}
+        {/* ——— 05 Achievements ——— */}
         <section className="section wrap" aria-labelledby="achievements">
-          <SectionHead id="achievements" n="06" label="Achievements" />
+          <SectionHead id="achievements" n="05" label="Achievements" />
           <div className="ach">
             <div className="ach-major">
               {achievements.major.map((a, i) => (
@@ -254,6 +252,30 @@ export default function Home() {
                   <li key={m}>{m}</li>
                 ))}
               </ul>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ——— 06 Notes ——— */}
+        <section className="section wrap" aria-labelledby="notes">
+          <SectionHead id="notes" n="06" label="Notes" />
+          <div className="grid notes-grid">
+            <Reveal>
+              <h2 className="t-statement">Thinking through law.</h2>
+              <p className="lede">
+                Selected observations on contracts, legal research, business and emerging legal questions.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <Link href={`/notes/${note.slug}`} className="feature">
+                <span className="label">{note.category}</span>
+                <span className="feature-title">{note.title}</span>
+                <span className="feature-excerpt">{note.excerpt}</span>
+                <span className="feature-cta">Read note →</span>
+              </Link>
+              <Link href="/notes" className="ulink all-notes">
+                All notes
+              </Link>
             </Reveal>
           </div>
         </section>
@@ -309,13 +331,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer wrap">
-        <span>© 2026 {person.name}</span>
-        <span>New Delhi · India</span>
-        <a className="ulink" href={person.linkedin} target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
-      </footer>
+      <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
     </>
   );

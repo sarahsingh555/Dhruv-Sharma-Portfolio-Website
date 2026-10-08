@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { person, sections } from "@/lib/content";
 
@@ -26,9 +27,9 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <a href="#top" className="brand" aria-label={`${person.name} — back to top`}>
+      <Link href="/" className="brand" aria-label={`${person.name} — home`}>
         {person.name}
-      </a>
+      </Link>
       <nav aria-label="Primary" className="nav">
         <button
           type="button"
@@ -39,18 +40,18 @@ export default function Header() {
         >
           {open ? "Close" : "Index"}
         </button>
-        <a href="#contact" className="nav-link nav-contact">
+        <Link href="/#contact" className="nav-link nav-contact">
           Contact
-        </a>
+        </Link>
       </nav>
       <div id="index-panel" className="index-panel" data-open={open} hidden={!open}>
         <ol>
           {sections.map((s) => (
             <li key={s.id}>
-              <a href={`#${s.id}`} onClick={() => setOpen(false)} aria-current={active === s.id ? "true" : undefined}>
+              <Link href={`/#${s.id}`} onClick={() => setOpen(false)} aria-current={active === s.id ? "true" : undefined}>
                 <span className="num">{s.n}</span>
                 <span className="lbl">{s.label}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ol>
