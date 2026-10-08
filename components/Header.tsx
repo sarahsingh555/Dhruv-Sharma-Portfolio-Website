@@ -31,20 +31,35 @@ export default function Header() {
         {person.name}
       </Link>
       <nav aria-label="Primary" className="nav">
+        <ul className="nav-links">
+          {sections
+            .filter((s) => s.id !== "contact")
+            .map((s) => (
+              <li key={s.id}>
+                <Link
+                  href={`/#${s.id}`}
+                  className="nav-link"
+                  aria-current={active === s.id ? "true" : undefined}
+                >
+                  {s.label}
+                </Link>
+              </li>
+            ))}
+        </ul>
         <button
           type="button"
-          className="nav-link"
+          className="nav-link nav-toggle"
           aria-expanded={open}
           aria-controls="index-panel"
           onClick={() => setOpen((o) => !o)}
         >
-          {open ? "Close" : "Index"}
+          {open ? "Close" : "Menu"}
         </button>
-        <Link href="/#contact" className="nav-link nav-contact">
-          Contact
+        <Link href="/#contact" className="nav-cta">
+          Hire
         </Link>
       </nav>
-      <div id="index-panel" className="index-panel" data-open={open} hidden={!open}>
+      <div id="index-panel" className="index-panel" hidden={!open}>
         <ol>
           {sections.map((s) => (
             <li key={s.id}>

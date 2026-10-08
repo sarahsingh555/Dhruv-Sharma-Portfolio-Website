@@ -31,7 +31,7 @@ export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
       <Header />
       <main className="wrap page-top">
         <p className="section-label">
-          <span className="num">06</span> / Notes
+          <span className="num">05</span> / Notes
         </p>
         <article className="note">
           <header className="note-head">

@@ -23,7 +23,7 @@ export default function NotesPage() {
       <Header />
       <main className="wrap page-top">
         <p className="section-label">
-          <span className="num">06</span> / Notes
+          <span className="num">05</span> / Notes
         </p>
         <h1 className="t-statement sr-gap">Thinking through law.</h1>
         <p className="lede">

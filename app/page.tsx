@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,17 +8,25 @@ import ContactActions from "@/components/ContactActions";
 import {
   person,
   interests,
+  developing,
   competencies,
   tools,
   languages,
-  developing,
   experience,
   experienceNote,
   research,
   moots,
   achievements,
+  services,
+  process,
+  freelance,
+  certificates,
+  facts,
 } from "@/lib/content";
 import { featuredNote } from "@/lib/notes";
+
+const enquire = (service: string) =>
+  `https://wa.me/${person.whatsapp}?text=${encodeURIComponent(`Hello, I would like to discuss: ${service}.`)}`;
 
 export default function Home() {
   const note = featuredNote();
@@ -27,6 +36,7 @@ export default function Home() {
     name: person.name,
     url: person.site,
     email: person.email,
+    jobTitle: "Law student; freelance legal research and drafting support",
     sameAs: [person.linkedin],
     alumniOf: { "@type": "CollegeOrUniversity", name: "Amity University, Noida" },
     address: { "@type": "PostalAddress", addressLocality: "New Delhi", addressCountry: "IN" },
@@ -34,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <a href="#profile" className="skip">
+      <a href="#about" className="skip">
         Skip to content
       </a>
       <Header />
@@ -53,7 +63,8 @@ export default function Home() {
           <div className="hero-lower">
             <p className="hero-statement">
               Fifth-year B.A. LL.B. student at Amity University, Noida, with five legal internships across the Delhi High
-              Court and senior advocates&apos; chambers. Interested in litigation, legal research and advocacy.
+              Court and senior advocates&apos; chambers. Available for freelance legal research, drafting and litigation
+              support.
             </p>
             <dl className="hero-meta">
               <div>
@@ -78,21 +89,24 @@ export default function Home() {
           </div>
           <div className="hero-cta">
             <a className="btn btn-solid" href="#contact">
-              Get in touch
+              Hire for a project
+            </a>
+            <a className="btn" href="#services">
+              View services
             </a>
             <a className="btn" href={person.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn profile
+              LinkedIn
             </a>
-            <a className="scroll-cue" href="#profile" aria-label="Scroll to profile">
+            <a className="scroll-cue" href="#about" aria-label="Scroll to about">
               <span>Scroll</span>
               <i aria-hidden="true" />
             </a>
           </div>
         </section>
 
-        {/* ——— 01 Profile ——— */}
-        <section className="section wrap" aria-labelledby="profile">
-          <SectionHead id="profile" n="01" label="Profile" />
+        {/* ——— 01 About ——— */}
+        <section className="section wrap" aria-labelledby="about">
+          <SectionHead id="about" n="01" label="About" />
           <div className="grid profile-grid">
             <Reveal className="statement">
               <h2 className="t-statement">Advocacy begins with the facts, then the law.</h2>
@@ -100,25 +114,39 @@ export default function Home() {
             <Reveal className="bio" delay={80}>
               <p>
                 Dhruv Sharma is a fifth-year B.A. LL.B. student at Amity University, Noida (graduating 2027). He has
-                completed five legal internships: with Hon&apos;ble Mr. Justice Girish Kathpalia at the High Court of
-                Delhi, in the chambers of Senior Advocates Vikas Pahwa and K.T.S. Tulsi, with Gaurav Gupta and at
-                International Investment &amp; Law Consultants. The work has been legal research, case notes and the
-                observation of hearings before the Supreme Court, the Delhi High Court and District Courts.
+                completed five legal internships: at the High Court of Delhi with Hon&apos;ble Mr. Justice Girish
+                Kathpalia, in the chambers of Senior Advocates Vikas Pahwa and K.T.S. Tulsi, with Advocate Gaurav Gupta
+                and at International Investment &amp; Law Consultants. The work covers statutory and precedent-based
+                research, case briefs and memoranda, review of pleadings, contracts and legal notices, and drafting
+                support.
               </p>
               <p>
                 He has competed in national and institutional moot courts, placing second at the Amity Intra-Moot
-                Competition in 2024, and has co-authored a paper submitted to The GNLU Law Review. His interest is
-                litigation and legal research. He also writes on contracts and commercial questions, and explains legal
-                issues in plain terms.
+                Competition in 2024, and has co-authored a paper submitted to The GNLU Law Review. He also writes on
+                contracts and commercial questions, in plain terms. He now takes freelance research, drafting and
+                litigation-support assignments.
+              </p>
+              <p className="cta-inline">
+                <a className="btn btn-solid" href="#contact">
+                  Hire for a project
+                </a>
               </p>
             </Reveal>
           </div>
+          <Reveal className="facts">
+            {facts.map((f) => (
+              <div key={f.label}>
+                <p className="fact-n">{f.n}</p>
+                <p className="label">{f.label}</p>
+              </div>
+            ))}
+          </Reveal>
           <Reveal className="meta-grid">
             <div>
               <h3 className="label">Education</h3>
               <p className="meta-main">B.A. LL.B.</p>
               <p>Amity University, Noida, Uttar Pradesh</p>
-              <p className="muted">2022—2027</p>
+              <p className="muted">2022—2027 · CGPA {person.cgpa}</p>
             </div>
             <div>
               <h3 className="label">Location</h3>
@@ -155,10 +183,14 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* ——— 02 Experience ——— */}
-        <section className="section wrap" aria-labelledby="experience">
-          <SectionHead id="experience" n="02" label="Experience" />
-          <h2 className="t-statement sr-gap">Five legal internships, 2023—2025.</h2>
+        {/* ——— 02 Portfolio ——— */}
+        <section className="section wrap" aria-labelledby="portfolio">
+          <SectionHead id="portfolio" n="02" label="Portfolio" />
+          <h2 className="t-statement sr-gap">Experience, research and advocacy.</h2>
+
+          <h3 className="sub-label" id="experience">
+            Experience
+          </h3>
           <ol className="timeline">
             {experience.map((e, i) => (
               <Reveal as="li" key={e.org} className="entry" delay={i * 40}>
@@ -172,7 +204,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="entry-body">
-                  <h3 className="t-org">{e.org}</h3>
+                  <h4 className="t-org">{e.org}</h4>
                   <p className="role">{e.role}</p>
                   <p>{e.body}</p>
                 </div>
@@ -180,17 +212,16 @@ export default function Home() {
             ))}
           </ol>
           <p className="muted note-line">{experienceNote}</p>
-        </section>
 
-        {/* ——— 03 Research ——— */}
-        <section className="section wrap" aria-labelledby="research">
-          <SectionHead id="research" n="03" label="Research" />
+          <h3 className="sub-label" id="research">
+            Research
+          </h3>
           <ol className="archive">
             {research.map((r, i) => (
               <Reveal as="li" key={r.title} className="archive-row" delay={i * 60}>
                 <span className="num">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <h3 className="t-title">{r.title}</h3>
+                  <h4 className="t-title">{r.title}</h4>
                   <p className="muted">{r.note}</p>
                 </div>
                 <div className="archive-meta">
@@ -200,20 +231,18 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
-        </section>
 
-        {/* ——— 04 Moot courts ——— */}
-        <section className="section wrap" aria-labelledby="moot-courts">
-          <SectionHead id="moot-courts" n="04" label="Moot Courts" />
-          <h2 className="t-statement sr-gap">Competitive advocacy and legal research.</h2>
+          <h3 className="sub-label" id="moot-courts">
+            Moot courts
+          </h3>
           <p className="lede">
-            Moot courts are simulated proceedings. They build research, written submissions and oral advocacy; they are
-            not appearances for clients.
+            Competitive advocacy and legal research. Moot courts are simulated proceedings: they build research, written
+            submissions and oral advocacy, and are not appearances for clients.
           </p>
           <div className="moots">
             {moots.map((y) => (
               <div className="moot-year" key={y.year}>
-                <h3 className="year num">{y.year}</h3>
+                <h4 className="year num">{y.year}</h4>
                 <ol>
                   {y.items.map((m, i) => (
                     <Reveal as="li" key={m.name} className={`moot${m.top ? " moot-top" : ""}`} delay={i * 50}>
@@ -222,7 +251,7 @@ export default function Home() {
                           <span className="num">2nd</span> place
                         </p>
                       )}
-                      <h4 className="t-title">{m.name}</h4>
+                      <h5 className="t-title">{m.name}</h5>
                       <p className="host">{m.host}</p>
                       <p className="muted">{m.detail}</p>
                       <p className="label tags">{m.tags.join(" · ")}</p>
@@ -232,11 +261,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
 
-        {/* ——— 05 Achievements ——— */}
-        <section className="section wrap" aria-labelledby="achievements">
-          <SectionHead id="achievements" n="05" label="Achievements" />
+          <h3 className="sub-label" id="achievements">
+            Achievements
+          </h3>
           <div className="ach">
             <div className="ach-major">
               {achievements.major.map((a, i) => (
@@ -256,9 +284,96 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ——— 06 Notes ——— */}
+        {/* ——— 03 Services ——— */}
+        <section className="section wrap" aria-labelledby="services">
+          <SectionHead id="services" n="03" label="Services" />
+          <div className="grid services-intro">
+            <Reveal>
+              <h2 className="t-statement">Research and drafting support, delivered clearly.</h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <p className="lede">
+                {freelance.line} Work is scoped and quoted per assignment, for advocates, chambers, law firms, startups
+                and creators.
+              </p>
+            </Reveal>
+          </div>
+          <ol className="services">
+            {services.map((s, i) => (
+              <Reveal as="li" key={s.n} className="service" delay={i * 40}>
+                <span className="num service-n">{s.n}</span>
+                <div className="service-main">
+                  <h3 className="t-title">{s.title}</h3>
+                  <p className="label for">For {s.for}</p>
+                  <p>{s.body}</p>
+                </div>
+                <div className="service-out">
+                  <p className="label">You receive</p>
+                  <ul className="plain">
+                    {s.outputs.map((o) => (
+                      <li key={o}>{o}</li>
+                    ))}
+                  </ul>
+                  <a className="ulink enquire" href={enquire(s.title)} target="_blank" rel="noopener noreferrer">
+                    Enquire on WhatsApp →
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal className="process">
+            {process.map((p) => (
+              <div key={p.n}>
+                <p className="num label">{p.n}</p>
+                <h3 className="t-org">{p.title}</h3>
+                <p className="muted">{p.body}</p>
+              </div>
+            ))}
+          </Reveal>
+          <p className="muted note-line disclaimer">{freelance.disclaimer}</p>
+          <p className="cta-inline">
+            <a className="btn btn-solid" href="#contact">
+              Discuss a project
+            </a>
+          </p>
+        </section>
+
+        {/* ——— 04 Wall of Merit ——— */}
+        <section className="section wrap" aria-labelledby="wall-of-merit">
+          <SectionHead id="wall-of-merit" n="04" label="Wall of Merit" />
+          <h2 className="t-statement sr-gap">Certificates and recognition.</h2>
+          <p className="lede">Internship certificates and moot court certificates. Select any to view it in full.</p>
+          {certificates.map((g) => (
+            <div className="wall-group" key={g.group}>
+              <h3 className="sub-label">{g.group}</h3>
+              <ul className="wall">
+                {g.items.map((c) => (
+                  <Reveal as="li" key={c.file} className="cert">
+                    <a href={`/certificates/${c.file}.webp`} target="_blank" rel="noopener noreferrer">
+                      <span className="cert-img">
+                        <Image
+                          src={`/certificates/${c.file}.webp`}
+                          alt={`Certificate: ${c.title}. ${c.sub}.`}
+                          fill
+                          sizes="(min-width: 1100px) 30vw, (min-width: 760px) 45vw, 92vw"
+                          loading="lazy"
+                        />
+                      </span>
+                      <span className="cert-title">{c.title}</span>
+                      <span className="muted cert-sub">
+                        {c.sub} · {c.date}
+                      </span>
+                    </a>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        {/* ——— 05 Notes ——— */}
         <section className="section wrap" aria-labelledby="notes">
-          <SectionHead id="notes" n="06" label="Notes" />
+          <SectionHead id="notes" n="05" label="Notes" />
           <div className="grid notes-grid">
             <Reveal>
               <h2 className="t-statement">Thinking through law.</h2>
@@ -280,16 +395,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ——— 07 Contact ——— */}
+        {/* ——— 06 Contact ——— */}
         <section className="section wrap contact" aria-labelledby="contact">
-          <SectionHead id="contact" n="07" label="Contact" />
+          <SectionHead id="contact" n="06" label="Contact" />
           <div className="grid contact-grid">
             <Reveal>
-              <h2 className="t-statement">{person.name}</h2>
+              <h2 className="t-statement">Hire Dhruv Sharma</h2>
               <p className="muted">
                 {person.degree} · Amity University
                 <br />
-                For internships, research collaboration and professional enquiries.
+                {freelance.line}
               </p>
               <dl className="contact-list">
                 <div>

@@ -11,9 +11,9 @@ const serif = Cormorant_Garamond({
 });
 const sans = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
 
-const title = "Dhruv Sharma — Law | Legal Research | Litigation";
+const title = "Dhruv Sharma — Law Student | Freelance Legal Research & Litigation Support";
 const description =
-  "Fifth-year B.A. LL.B. student at Amity University, Noida. Five legal internships including the High Court of Delhi and senior advocates' chambers; moot courts, legal research and notes on contracts.";
+  "Fifth-year B.A. LL.B. student at Amity University, Noida, available for freelance legal research, drafting and litigation support. Five legal internships including the High Court of Delhi; moot courts; notes on contracts.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(person.site),

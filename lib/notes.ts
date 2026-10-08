@@ -26,9 +26,10 @@ const notes: Note[] = [
     title: "Signing an Influencer Agreement? Don't Skip These 3 Things.",
     category: "Contracts / Creator Economy",
     author: "Dhruv Sharma",
+    date: "2026-09-24",
     excerpt:
       "A brand collaboration may look straightforward: create the content, post it, get paid. The agreement behind it can decide far more than the payment.",
-    source: "First published as a post on LinkedIn.",
+    source: "First published as a post on LinkedIn on 24 September 2026.",
     intro: [
       "A brand collaboration may look straightforward: create the content, post it, get paid.",
       "But the agreement behind that collaboration can decide far more than just the payment. Three areas deserve a careful read before anything is signed.",
