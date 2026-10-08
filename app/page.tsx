@@ -58,16 +58,6 @@ export default function Home() {
             <i />
             <i />
           </div>
-          <div className="hero-portrait">
-            <Image
-              src="/portrait-hero.webp"
-              alt="Portrait of Dhruv Sharma"
-              fill
-              sizes="(min-width: 1000px) 36vw, 70vw"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
           <div className="hero-inner wrap">
             <p className="label hero-kicker">Law · Litigation · Legal Research</p>
             <h1 id="name" className="hero-name">
