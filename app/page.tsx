@@ -396,6 +396,7 @@ export default function Home() {
         </section>
 
         {/* ——— 06 Contact ——— */}
+        <div className="band-navy">
         <section className="section wrap contact" aria-labelledby="contact">
           <SectionHead id="contact" n="06" label="Contact" />
           <div className="grid contact-grid">
@@ -444,9 +445,10 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
+      <Footer />
+        </div>
       </main>
 
-      <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
     </>
   );
