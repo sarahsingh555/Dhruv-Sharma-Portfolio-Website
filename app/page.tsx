@@ -38,6 +38,7 @@ export default function Home() {
     url: person.site,
     email: person.email,
     jobTitle: "Law student; freelance legal research and drafting support",
+    image: `${person.site}/portrait-about.webp`,
     sameAs: [person.linkedin],
     alumniOf: { "@type": "CollegeOrUniversity", name: "Amity University, Noida" },
     address: { "@type": "PostalAddress", addressLocality: "New Delhi", addressCountry: "IN" },
@@ -56,6 +57,16 @@ export default function Home() {
             <i />
             <i />
             <i />
+          </div>
+          <div className="hero-portrait">
+            <Image
+              src="/portrait-hero.webp"
+              alt="Portrait of Dhruv Sharma"
+              fill
+              sizes="(min-width: 1000px) 36vw, 70vw"
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
           <div className="hero-inner wrap">
             <p className="label hero-kicker">Law · Litigation · Legal Research</p>
@@ -119,6 +130,15 @@ export default function Home() {
           <div className="grid profile-grid">
             <Reveal className="statement">
               <h2 className="t-statement">Advocacy begins with the facts, then the law.</h2>
+              <figure className="about-portrait">
+                <Image
+                  src="/portrait-about.webp"
+                  alt="Dhruv Sharma, law student at Amity University"
+                  fill
+                  sizes="(min-width: 760px) 22rem, 80vw"
+                  loading="lazy"
+                />
+              </figure>
             </Reveal>
             <Reveal className="bio" delay={80}>
               <p>

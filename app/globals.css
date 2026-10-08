@@ -104,6 +104,18 @@ ul, ol { list-style: none; }
 .scroll-cue i { display: block; width: 1px; height: 3rem; background: rgba(255,255,255,.2); position: relative; overflow: hidden; }
 .scroll-cue i::after { content: ""; position: absolute; inset: 0; background: #fff; animation: drip 2.4s var(--ease) infinite; }
 
+.hero-portrait { position: absolute; z-index: 1; bottom: 0; right: max(var(--gutter), calc((100vw - 1440px) / 2 + var(--gutter))); height: min(82svh, 780px); aspect-ratio: 2 / 3; pointer-events: none;
+  --m: linear-gradient(to top, transparent 0, #000 42%), linear-gradient(to bottom, transparent 0, #000 16%), linear-gradient(to right, transparent 0, #000 30%), linear-gradient(to left, transparent 0, #000 8%);
+  -webkit-mask-image: var(--m); -webkit-mask-composite: source-in, source-in, source-in;
+  mask-image: var(--m); mask-composite: intersect; animation: fade 2s .9s var(--ease) both; }
+.hero-portrait img { object-fit: cover; object-position: 50% 0; }
+.about-portrait { position: relative; margin-top: 2rem; width: min(100%, 22rem); aspect-ratio: 4 / 5; overflow: hidden; background: var(--rule); }
+.about-portrait img { object-fit: cover; }
+@media (max-width: 759px) {
+  .hero-portrait { bottom: auto; top: 3.5rem; right: -4rem; height: 56svh; opacity: .5;
+    --m: linear-gradient(to bottom, transparent 0, #000 14%, #000 50%, transparent 100%), linear-gradient(to right, transparent 0, #000 40%); }
+}
+
 /* buttons */
 .btn { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .7rem 1.4rem; border: 1px solid var(--navy); background: transparent; color: var(--navy); cursor: pointer; font-family: inherit; transition: background .35s var(--ease), color .35s var(--ease), border-color .35s; }
 .btn:hover, .btn:focus-visible { border-color: var(--accent); color: var(--accent); }
