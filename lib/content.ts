@@ -73,6 +73,7 @@ export const experience = [
     role: "Legal intern",
     period: "December 2024",
     areas: ["Constitutional Law", "Administrative Law", "Criminal Litigation"],
+    photo: { src: "/with-kts-tulsi.webp", alt: "Dhruv Sharma with Senior Advocate K.T.S. Tulsi on completing the internship", caption: "On completing the internship" },
     body: "Supported constitutional and administrative matters through precedent research and structured case preparation.",
   },
   {

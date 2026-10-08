@@ -64,6 +64,7 @@ export default function Home() {
                 <span>Dhruv</span>
               </span>
               <span className="line">
+                <span className="dash" aria-hidden="true" />
                 <span>Sharma</span>
               </span>
             </h1>
@@ -199,19 +200,6 @@ export default function Home() {
           <h3 className="sub-label" id="experience">
             Experience
           </h3>
-          <div className="exp-split">
-          <figure className="photo">
-            <div className="photo-frame">
-            <Image
-              src="/with-kts-tulsi.webp"
-              alt="Dhruv Sharma with Senior Advocate K.T.S. Tulsi on completing his internship"
-              fill
-              sizes="(min-width: 1000px) 28vw, 90vw"
-              loading="lazy"
-            />
-            </div>
-            <figcaption>With Senior Advocate K.T.S. Tulsi on completing the internship, December 2024.</figcaption>
-          </figure>
           <ol className="timeline">
             {experience.map((e, i) => (
               <Reveal as="li" key={e.org} className="entry" delay={i * 40}>
@@ -229,10 +217,17 @@ export default function Home() {
                   <p className="role">{e.role}</p>
                   <p>{e.body}</p>
                 </div>
+                {"photo" in e && e.photo && (
+                  <figure className="thumb">
+                    <span className="thumb-img">
+                      <Image src={e.photo.src} alt={e.photo.alt} fill sizes="128px" loading="lazy" />
+                    </span>
+                    <figcaption>{e.photo.caption}</figcaption>
+                  </figure>
+                )}
               </Reveal>
             ))}
           </ol>
-          </div>
           <p className="muted note-line">{experienceNote}</p>
 
           <h3 className="sub-label" id="research">

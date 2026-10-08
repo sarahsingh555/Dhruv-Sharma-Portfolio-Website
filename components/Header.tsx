@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Logo from "@/components/Logo";
 import { person, sections } from "@/lib/content";
 
 export default function Header() {
@@ -48,7 +49,8 @@ export default function Header() {
   return (
     <header className="site-header" data-solid={solid || open}>
       <Link href="/" className="brand" aria-label={`${person.name} — home`}>
-        {person.name}
+        <Logo />
+        <span className="brand-name">{person.name}</span>
       </Link>
       <nav aria-label="Primary" className="nav">
         <ul className="nav-links">
