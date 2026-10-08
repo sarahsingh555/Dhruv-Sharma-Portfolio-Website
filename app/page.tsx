@@ -53,11 +53,7 @@ export default function Home() {
       <main id="top">
         {/* ——— Opening ——— */}
         <section className="hero" data-hero aria-labelledby="name">
-          <div className="hero-bg" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </div>
+          <div className="hero-bg" aria-hidden="true" />
           <div className="hero-inner wrap">
             <p className="label hero-kicker">Law · Litigation · Legal Research</p>
             <h1 id="name" className="hero-name">

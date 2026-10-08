@@ -85,10 +85,6 @@ ul, ol { list-style: none; }
 .hero-bg::before, .hero-bg::after { content: ""; position: absolute; border-radius: 50%; filter: blur(70px); }
 .hero-bg::before { width: 60vw; height: 60vw; right: -12vw; top: -18vw; background: radial-gradient(circle, rgba(46,98,190,.55), transparent 65%); animation: drift 26s ease-in-out infinite alternate; }
 .hero-bg::after { width: 45vw; height: 45vw; left: -10vw; bottom: -20vw; background: radial-gradient(circle, rgba(29,66,134,.5), transparent 65%); animation: drift 32s ease-in-out infinite alternate-reverse; }
-.hero-bg i { position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(transparent, rgba(255,255,255,.12) 30%, rgba(255,255,255,.12) 70%, transparent); }
-.hero-bg i:nth-child(1) { left: calc(var(--gutter) + 0px); }
-.hero-bg i:nth-child(2) { left: 50%; }
-.hero-bg i:nth-child(3) { right: var(--gutter); }
 .hero::before, .hero::after { content: ""; position: absolute; left: 0; right: 0; height: 10vh; background: #02070f; z-index: 5; pointer-events: none; }
 .hero::before { top: 0; animation: bar-top 1.4s .25s var(--ease) forwards; }
 .hero::after { bottom: 0; animation: bar-bot 1.4s .25s var(--ease) forwards; }
