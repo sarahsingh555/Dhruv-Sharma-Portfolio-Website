@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import ContactActions from "@/components/ContactActions";
+import GuestInvite from "@/components/GuestInvite";
 import {
   person,
   interests,
@@ -23,13 +24,13 @@ import {
   certificates,
   facts,
 } from "@/lib/content";
-import { featuredNote } from "@/lib/notes";
+import { featuredThought } from "@/lib/thoughts";
 
 const enquire = (service: string) =>
   `https://wa.me/${person.whatsapp}?text=${encodeURIComponent(`Hello, I would like to discuss: ${service}.`)}`;
 
 export default function Home() {
-  const note = featuredNote();
+  const note = featuredThought();
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -50,57 +51,64 @@ export default function Home() {
       <Header />
       <main id="top">
         {/* ——— Opening ——— */}
-        <section className="hero wrap" aria-labelledby="name">
-          <p className="label hero-kicker">Law · Litigation · Legal Research</p>
-          <h1 id="name" className="hero-name">
-            <span className="line">
-              <span>Dhruv</span>
-            </span>
-            <span className="line">
-              <span>Sharma</span>
-            </span>
-          </h1>
-          <div className="hero-lower">
-            <p className="hero-statement">
-              Fifth-year B.A. LL.B. student at Amity University, Noida, with five legal internships across the Delhi High
-              Court and senior advocates&apos; chambers. Available for freelance legal research, drafting and litigation
-              support.
-            </p>
-            <dl className="hero-meta">
-              <div>
-                <dt className="label">Degree</dt>
-                <dd>{person.degree}</dd>
-              </div>
-              <div>
-                <dt className="label">University</dt>
-                <dd>Amity University, Noida</dd>
-              </div>
-              <div>
-                <dt className="label">Years</dt>
-                <dd>{person.years}</dd>
-              </div>
-              <div>
-                <dt className="label">Based in</dt>
-                <dd>
-                  {person.city}, {person.country}
-                </dd>
-              </div>
-            </dl>
+        <section className="hero" data-hero aria-labelledby="name">
+          <div className="hero-bg" aria-hidden="true">
+            <i />
+            <i />
+            <i />
           </div>
-          <div className="hero-cta">
-            <a className="btn btn-solid" href="#contact">
-              Hire for a project
-            </a>
-            <a className="btn" href="#services">
-              View services
-            </a>
-            <a className="btn" href={person.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn
-            </a>
-            <a className="scroll-cue" href="#about" aria-label="Scroll to about">
-              <span>Scroll</span>
-              <i aria-hidden="true" />
-            </a>
+          <div className="hero-inner wrap">
+            <p className="label hero-kicker">Law · Litigation · Legal Research</p>
+            <h1 id="name" className="hero-name">
+              <span className="line">
+                <span>Dhruv</span>
+              </span>
+              <span className="line">
+                <span>Sharma</span>
+              </span>
+            </h1>
+            <div className="hero-lower">
+              <p className="hero-statement">
+                Fifth-year B.A. LL.B. student at Amity University, Noida, with five legal internships across the Delhi
+                High Court and senior advocates&apos; chambers. Available for freelance legal research, contract
+                drafting and litigation support.
+              </p>
+              <dl className="hero-meta">
+                <div>
+                  <dt className="label">Degree</dt>
+                  <dd>{person.degree}</dd>
+                </div>
+                <div>
+                  <dt className="label">University</dt>
+                  <dd>Amity University, Noida</dd>
+                </div>
+                <div>
+                  <dt className="label">Years</dt>
+                  <dd>{person.years}</dd>
+                </div>
+                <div>
+                  <dt className="label">Based in</dt>
+                  <dd>
+                    {person.city}, {person.country}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div className="hero-cta">
+              <a className="btn btn-solid" href="#contact">
+                Hire for a project
+              </a>
+              <a className="btn" href="#services">
+                View services
+              </a>
+              <a className="btn" href={person.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+              <a className="scroll-cue" href="#about" aria-label="Scroll to about">
+                <span>Scroll</span>
+                <i aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -191,6 +199,19 @@ export default function Home() {
           <h3 className="sub-label" id="experience">
             Experience
           </h3>
+          <div className="exp-split">
+          <figure className="photo">
+            <div className="photo-frame">
+            <Image
+              src="/with-kts-tulsi.webp"
+              alt="Dhruv Sharma with Senior Advocate K.T.S. Tulsi on completing his internship"
+              fill
+              sizes="(min-width: 1000px) 28vw, 90vw"
+              loading="lazy"
+            />
+            </div>
+            <figcaption>With Senior Advocate K.T.S. Tulsi on completing the internship, December 2024.</figcaption>
+          </figure>
           <ol className="timeline">
             {experience.map((e, i) => (
               <Reveal as="li" key={e.org} className="entry" delay={i * 40}>
@@ -211,6 +232,7 @@ export default function Home() {
               </Reveal>
             ))}
           </ol>
+          </div>
           <p className="muted note-line">{experienceNote}</p>
 
           <h3 className="sub-label" id="research">
@@ -371,25 +393,29 @@ export default function Home() {
           ))}
         </section>
 
-        {/* ——— 05 Notes ——— */}
-        <section className="section wrap" aria-labelledby="notes">
-          <SectionHead id="notes" n="05" label="Notes" />
-          <div className="grid notes-grid">
+        {/* ——— 05 Thoughts ——— */}
+        <section className="section wrap" aria-labelledby="thoughts">
+          <SectionHead id="thoughts" n="05" label="Thoughts" />
+          <div className="grid thoughts-grid">
             <Reveal>
-              <h2 className="t-statement">Thinking through law.</h2>
+              <h2 className="t-statement">Thoughts on law, contracts and business.</h2>
               <p className="lede">
-                Selected observations on contracts, legal research, business and emerging legal questions.
+                Dhruv&apos;s views on contracts, legal research and recent legal questions, with a guest column for
+                other voices.
               </p>
+              <GuestInvite />
             </Reveal>
             <Reveal delay={80}>
-              <Link href={`/notes/${note.slug}`} className="feature">
-                <span className="label">{note.category}</span>
-                <span className="feature-title">{note.title}</span>
+              <Link href={`/thoughts/${note.slug}`} className="feature">
+                <span className="feature-cover">
+                  <span className="label">Latest · {note.category}</span>
+                  <span className="feature-title">{note.title}</span>
+                </span>
                 <span className="feature-excerpt">{note.excerpt}</span>
-                <span className="feature-cta">Read note →</span>
+                <span className="feature-cta">Read the piece →</span>
               </Link>
-              <Link href="/notes" className="ulink all-notes">
-                All notes
+              <Link href="/thoughts" className="ulink all-notes">
+                All thoughts
               </Link>
             </Reveal>
           </div>

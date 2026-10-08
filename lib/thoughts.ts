@@ -1,31 +1,36 @@
-export type NoteBlock =
+export type ThoughtBlock =
   | { type: "p"; text: string }
   | { type: "q"; text: string }
   | { type: "list"; items: string[] };
 
-export type NoteSection = { n?: string; heading: string; blocks: NoteBlock[] };
+export type ThoughtSection = { n?: string; heading: string; blocks: ThoughtBlock[] };
 
-export type Note = {
+export type Thought = {
   slug: string;
   title: string;
   category: string;
   author: string;
+  /** "dhruv" for his own pieces; "guest" for invited contributors (shown in the Guest column). */
+  kind: "dhruv" | "guest";
+  /** Guest only: short description of the contributor. */
+  authorRole?: string;
   /** ISO date (YYYY-MM-DD). Leave undefined until the original publication date is confirmed. */
   date?: string;
   excerpt: string;
   intro: string[];
-  sections: NoteSection[];
+  sections: ThoughtSection[];
   closing: string;
   source?: string;
 };
 
-// Add new notes to this array. The newest (by date, then array order) is featured on the homepage.
-const notes: Note[] = [
+// Add new pieces to this array. The newest of Dhruv's own (by date, then array order) is featured on the homepage.
+const thoughts: Thought[] = [
   {
     slug: "signing-an-influencer-agreement",
     title: "Signing an Influencer Agreement? Don't Skip These 3 Things.",
     category: "Contracts / Creator Economy",
     author: "Dhruv Sharma",
+    kind: "dhruv",
     date: "2026-09-24",
     excerpt:
       "A brand collaboration may look straightforward: create the content, post it, get paid. The agreement behind it can decide far more than the payment.",
@@ -107,16 +112,18 @@ const notes: Note[] = [
   },
 ];
 
-function sortKey(n: Note, i: number) {
+function sortKey(n: Thought, i: number) {
   return n.date ? Date.parse(n.date) : -i; // undated notes keep array order, below dated ones
 }
 
-export function getNotes(): Note[] {
-  return notes
+export function getThoughts(): Thought[] {
+  return thoughts
     .map((n, i) => ({ n, k: sortKey(n, i) }))
     .sort((a, b) => b.k - a.k)
     .map((x) => x.n);
 }
 
-export const getNote = (slug: string) => notes.find((n) => n.slug === slug);
-export const featuredNote = () => getNotes()[0];
+export const getThought = (slug: string) => thoughts.find((n) => n.slug === slug);
+export const dhruvThoughts = () => getThoughts().filter((n) => n.kind === "dhruv");
+export const guestThoughts = () => getThoughts().filter((n) => n.kind === "guest");
+export const featuredThought = () => dhruvThoughts()[0];

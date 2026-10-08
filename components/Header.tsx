@@ -7,6 +7,7 @@ import { person, sections } from "@/lib/content";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const [solid, setSolid] = useState(true);
 
   useEffect(() => {
     const els = sections.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[];
@@ -19,6 +20,25 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    const hero = document.querySelector("[data-hero]");
+    if (!hero) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setSolid(hero.getBoundingClientRect().bottom < 90);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
@@ -26,7 +46,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="site-header">
+    <header className="site-header" data-solid={solid || open}>
       <Link href="/" className="brand" aria-label={`${person.name} — home`}>
         {person.name}
       </Link>

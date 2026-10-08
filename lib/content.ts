@@ -19,7 +19,7 @@ export const sections = [
   { id: "portfolio", n: "02", label: "Portfolio" },
   { id: "services", n: "03", label: "Services" },
   { id: "wall-of-merit", n: "04", label: "Wall of Merit" },
-  { id: "notes", n: "05", label: "Notes" },
+  { id: "thoughts", n: "05", label: "Thoughts" },
   { id: "contact", n: "06", label: "Contact" },
 ] as const;
 
@@ -200,10 +200,10 @@ export const services = [
   },
   {
     n: "04",
-    title: "Contracts & creator-economy notes",
-    for: "Creators, startups, small businesses",
-    body: "Plain-language issue notes on commercial agreements: deliverables, usage rights, exclusivity and disclosure in influencer agreements, and the equivalent points in other contracts.",
-    outputs: ["Issue checklists by clause", "Plain-language summaries of an agreement", "Questions to raise with counsel before signing"],
+    title: "Contract drafting & review",
+    for: "Startups, creators, small businesses, advocates",
+    body: "First drafts and clause-level review of commercial agreements, including influencer and creator agreements: deliverables, usage rights, exclusivity and disclosure. Prepared for review by a supervising advocate before use.",
+    outputs: ["First drafts of agreements", "Clause-by-clause issue notes", "Plain-language summaries", "Questions to raise with counsel before signing"],
   },
   {
     n: "05",
@@ -214,7 +214,7 @@ export const services = [
   },
   {
     n: "06",
-    title: "Legal writing",
+    title: "Legal writing & commentary",
     for: "Businesses, creators, publications",
     body: "Clear explainers on contract and commercial questions, written for readers who are not lawyers.",
     outputs: ["Explainer articles", "Plain-language guides and checklists"],

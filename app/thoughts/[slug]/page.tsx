@@ -3,27 +3,27 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getNote, getNotes } from "@/lib/notes";
+import { getThought, getThoughts } from "@/lib/thoughts";
 
 export function generateStaticParams() {
-  return getNotes().map((n) => ({ slug: n.slug }));
+  return getThoughts().map((n) => ({ slug: n.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/notes/[slug]">): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/thoughts/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const n = getNote(slug);
+  const n = getThought(slug);
   if (!n) return {};
   return {
     title: `${n.title} — Dhruv Sharma`,
     description: n.excerpt,
-    alternates: { canonical: `/notes/${n.slug}` },
+    alternates: { canonical: `/thoughts/${n.slug}` },
     openGraph: { title: n.title, description: n.excerpt, type: "article", authors: [n.author] },
   };
 }
 
-export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
+export default async function NotePage({ params }: PageProps<"/thoughts/[slug]">) {
   const { slug } = await params;
-  const n = getNote(slug);
+  const n = getThought(slug);
   if (!n) notFound();
 
   return (
@@ -31,14 +31,14 @@ export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
       <Header />
       <main className="wrap page-top">
         <p className="section-label">
-          <span className="num">05</span> / Notes
+          <span className="num">05</span> / Thoughts
         </p>
         <article className="note">
           <header className="note-head">
             <p className="label accent">{n.category}</p>
             <h1 className="t-statement">{n.title}</h1>
             <p className="muted byline">
-              By {n.author}
+              By {n.author}{n.kind === "guest" && n.authorRole ? `, ${n.authorRole}` : ""}
               {n.date && (
                 <>
                   {" · "}
@@ -82,8 +82,8 @@ export default async function NotePage({ params }: PageProps<"/notes/[slug]">) {
             {n.source && <p className="muted source">{n.source}</p>}
           </div>
           <p className="back">
-            <Link href="/notes" className="ulink">
-              ← All notes
+            <Link href="/thoughts" className="ulink">
+              ← All thoughts
             </Link>
           </p>
         </article>
