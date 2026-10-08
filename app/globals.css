@@ -178,7 +178,8 @@ h2.year { margin: 1.5rem 0 1rem; }
 .moot .tags { margin-top: .6rem; letter-spacing: .12em; }
 .moot .t-title { transition: color .4s; }
 .moot:hover .t-title { color: var(--accent); }
-.moot-top { border-left: 2px solid var(--gold); padding-left: 1.25rem; margin-left: -1.25rem; }
+.moot-top { position: relative; }
+.moot-top::before { content: ""; position: absolute; left: -1rem; top: 1.4rem; bottom: 1.4rem; width: 2px; background: var(--gold); }
 .placing { font-weight: 600; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .5rem; color: var(--gold-ink); }
 .placing .num { color: var(--gold-ink); }
 
