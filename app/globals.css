@@ -11,6 +11,7 @@
   --gold-ink: #7d712f;
   --ease: cubic-bezier(0.22, 0.61, 0.2, 1);
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --serif: var(--font-serif), "Playfair Display", Georgia, serif;
   --sans: var(--font-sans), "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -54,6 +55,7 @@ ul, ol { list-style: none; }
 .site-header { --logo-letter: var(--deep); }
 .site-header[data-solid="true"] { --logo-letter: var(--paper); }
 .brand { display: flex; align-items: center; gap: .75rem; font-weight: 600; font-size: .95rem; letter-spacing: -.01em; }
+.brand-name { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; letter-spacing: 0; }
 .logo { height: 2.1rem; width: auto; display: block; flex: none; }
 @media (max-width: 420px) { .brand-name { display: none; } }
 .site-header[data-solid="true"] .brand { color: var(--navy); }
@@ -91,7 +93,7 @@ ul, ol { list-style: none; }
 .hero::before { top: 0; animation: bar-top 1.4s .25s var(--ease) forwards; }
 .hero::after { bottom: 0; animation: bar-bot 1.4s .25s var(--ease) forwards; }
 .hero-kicker { color: var(--sky); margin-bottom: 1.5rem; animation: fade 1.2s .6s var(--ease) both; }
-.hero-name { font-weight: 700; color: #fff; font-size: clamp(3rem, min(10.5vw, 15vh), 8.5rem); line-height: 1; letter-spacing: -.05em; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.hero-name { font-family: var(--serif); font-weight: 700; color: #fff; font-size: clamp(2.8rem, min(9.6vw, 14vh), 8rem); line-height: 1.04; letter-spacing: -.015em; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
 .hero-name .line { display: block; overflow: hidden; padding-bottom: .06em; }
 .hero-name .line > span:not(.dash) { display: block; animation: rise 1.3s .7s var(--ease) both; }
 .hero-name .line:nth-child(2) { display: flex; align-items: center; gap: .22em; padding-left: 0; }

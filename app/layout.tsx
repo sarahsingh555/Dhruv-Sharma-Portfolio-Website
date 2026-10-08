@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { person } from "@/lib/content";
 import "./globals.css";
 
+const serif = Playfair_Display({ variable: "--font-serif", subsets: ["latin"], weight: ["600", "700"], display: "swap" });
 const sans = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
 
 const title = "Dhruv Sharma — Law Student | Freelance Legal Research & Litigation Support";
@@ -22,7 +23,7 @@ export const viewport: Viewport = { themeColor: "#FBFBF9" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   );
